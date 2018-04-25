@@ -1,32 +1,27 @@
 from __future__ import absolute_import, print_function
 
 from sentry.auth.exceptions import IdentityNotValid
-from sentry.auth.providers.oauth2 import (
-    OAuth2Callback, OAuth2Provider, OAuth2Login
-)
+from sentry.auth.providers.oauth2 import (OAuth2Callback, OAuth2Login,
+                                          OAuth2Provider)
 
-from .client import GitHubApiError, GitHubClient
-from .constants import (
-    AUTHORIZE_URL, ACCESS_TOKEN_URL, CLIENT_ID, CLIENT_SECRET, SCOPE
-)
-from .views import (
-    ConfirmEmail, FetchUser, SelectOrganization, GitHubConfigureView
-)
+from .client import RagtagApiError, RagtagClient
+from .constants import (ACCESS_TOKEN_URL, AUTHORIZE_URL, CLIENT_ID,
+                        CLIENT_SECRET, SCOPE)
+from .views import FetchUser, RagtagConfigureView
 
 
-class GitHubOAuth2Provider(OAuth2Provider):
+class RagtagOAuth2Provider(OAuth2Provider):
     access_token_url = ACCESS_TOKEN_URL
     authorize_url = AUTHORIZE_URL
-    name = 'GitHub'
+    name = 'Ragtag'
     client_id = CLIENT_ID
     client_secret = CLIENT_SECRET
 
-    def __init__(self, org=None, **config):
-        super(GitHubOAuth2Provider, self).__init__(**config)
-        self.org = org
+    def __init__(self, **config):
+        super(RagtagOAuth2Provider, self).__init__(**config)
 
     def get_configure_view(self):
-        return GitHubConfigureView.as_view()
+        return RagtagConfigureView.as_view()
 
     def get_auth_pipeline(self):
         return [
@@ -45,27 +40,17 @@ class GitHubOAuth2Provider(OAuth2Provider):
                 client_secret=self.client_secret,
                 org=self.org,
             ),
-            ConfirmEmail(),
         ]
 
     def get_setup_pipeline(self):
         pipeline = self.get_auth_pipeline()
-        pipeline.append(SelectOrganization(
-            client_id=self.client_id,
-            client_secret=self.client_secret,
-        ))
         return pipeline
 
     def get_refresh_token_url(self):
         return ACCESS_TOKEN_URL
 
     def build_config(self, state):
-        return {
-            'org': {
-                'id': state['org']['id'],
-                'name': state['org']['login'],
-            },
-        }
+        return {}
 
     def build_identity(self, state):
         data = state['data']
@@ -78,11 +63,5 @@ class GitHubOAuth2Provider(OAuth2Provider):
         }
 
     def refresh_identity(self, auth_identity):
-        client = GitHubClient(self.client_id, self.client_secret)
+        client = RagtagClient(self.client_id, self.client_secret)
         access_token = auth_identity.data['access_token']
-
-        try:
-            if not client.is_org_member(access_token, self.org['id']):
-                raise IdentityNotValid
-        except GitHubApiError as e:
-            raise IdentityNotValid(e)
