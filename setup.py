@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-sentry-auth-github
+sentry-auth-ragtag
 ==================
 
 :copyright: (c) 2016 Functional Software, Inc
@@ -18,7 +18,7 @@ tests_require = [
 
 setup(
     name='sentry-auth-ragtag',
-    version='0.1.0',
+    version='0.1.1',
     author='Ragtag',
     author_email='opensource@ragtag.org',
     url='https://ragtag.org',

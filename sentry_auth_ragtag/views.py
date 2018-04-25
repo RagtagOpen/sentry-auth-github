@@ -30,7 +30,7 @@ class FetchUser(AuthView):
 
         user = self.client.get_user(access_token)
 
-        # A user hasn't set their name in their Github profile so it isn't
+        # A user hasn't set their name in their Ragtag profile so it isn't
         # populated in the response
         if not user.get('full_name'):
             user['name'] = _get_name_from_email(user['email'])
