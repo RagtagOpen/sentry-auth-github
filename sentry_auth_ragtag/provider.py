@@ -7,7 +7,7 @@ from sentry.auth.providers.oauth2 import (OAuth2Callback, OAuth2Login,
 from .client import RagtagApiError, RagtagClient
 from .constants import (ACCESS_TOKEN_URL, AUTHORIZE_URL, CLIENT_ID,
                         CLIENT_SECRET, SCOPE)
-from .views import FetchUser, RagtagConfigureView
+from .views import FetchUser
 
 
 class RagtagOAuth2Provider(OAuth2Provider):
