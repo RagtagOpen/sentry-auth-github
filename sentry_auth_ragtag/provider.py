@@ -38,7 +38,6 @@ class RagtagOAuth2Provider(OAuth2Provider):
             FetchUser(
                 client_id=self.client_id,
                 client_secret=self.client_secret,
-                org=self.org,
             ),
         ]
 
