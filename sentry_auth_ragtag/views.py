@@ -5,10 +5,6 @@ from sentry.auth.view import AuthView, ConfigureView
 from sentry.models import AuthIdentity
 
 from .client import RagtagClient
-from .constants import (ERR_NO_ORG_ACCESS, ERR_NO_PRIMARY_EMAIL,
-                        ERR_NO_SINGLE_PRIMARY_EMAIL,
-                        ERR_NO_SINGLE_VERIFIED_PRIMARY_EMAIL,
-                        ERR_NO_VERIFIED_PRIMARY_EMAIL, REQUIRE_VERIFIED_EMAIL)
 
 
 def _get_name_from_email(email):
