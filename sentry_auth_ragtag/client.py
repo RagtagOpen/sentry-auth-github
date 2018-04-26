@@ -43,4 +43,4 @@ class RagtagClient(object):
         return json.loads(req.content)
 
     def get_user(self, access_token):
-        return self._request('/me', access_token)
+        return self._request('/me/', access_token)

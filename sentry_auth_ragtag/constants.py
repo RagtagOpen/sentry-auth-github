@@ -11,5 +11,5 @@ SCOPE = 'identity email name'
 BASE_DOMAIN = 'id.ragtag.org'
 API_DOMAIN = '{}/api'.format(BASE_DOMAIN)
 
-ACCESS_TOKEN_URL = 'https://{0}/oauth/token'.format(BASE_DOMAIN)
-AUTHORIZE_URL = 'https://{0}/oauth/authorize'.format(BASE_DOMAIN)
+ACCESS_TOKEN_URL = 'https://{0}/oauth/token/'.format(BASE_DOMAIN)
+AUTHORIZE_URL = 'https://{0}/oauth/authorize/'.format(BASE_DOMAIN)
