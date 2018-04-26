@@ -18,7 +18,7 @@ tests_require = [
 
 setup(
     name='sentry-auth-ragtag',
-    version='0.1.6',
+    version='0.1.7',
     author='Ragtag',
     author_email='opensource@ragtag.org',
     url='https://ragtag.org',
