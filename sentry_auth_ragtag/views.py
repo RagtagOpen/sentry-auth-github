@@ -34,3 +34,8 @@ class FetchUser(AuthView):
         helper.bind_state('user', user)
 
         return helper.next_step()
+
+
+class RagtagConfigureView(ConfigureView):
+    def dispatch(self, request, organization, auth_provider):
+        return self.render('sentry_auth_ragtag/configure.html')
