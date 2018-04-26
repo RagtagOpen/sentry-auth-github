@@ -55,9 +55,9 @@ class RagtagOAuth2Provider(OAuth2Provider):
         data = state['data']
         user_data = state['user']
         return {
-            'id': user_data['id'],
+            'id': user_data['guid'],
             'email': user_data['email'],
-            'name': user_data['name'],
+            'name': user_data['full_name'],
             'data': self.get_oauth_data(data),
         }
 
