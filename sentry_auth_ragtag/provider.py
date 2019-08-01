@@ -1,12 +1,10 @@
 from __future__ import absolute_import, print_function
 
 from sentry.auth.exceptions import IdentityNotValid
-from sentry.auth.providers.oauth2 import (OAuth2Callback, OAuth2Login,
-                                          OAuth2Provider)
+from sentry.auth.providers.oauth2 import OAuth2Callback, OAuth2Login, OAuth2Provider
 
 from .client import RagtagApiError, RagtagClient
-from .constants import (ACCESS_TOKEN_URL, AUTHORIZE_URL, CLIENT_ID,
-                        CLIENT_SECRET, SCOPE)
+from .constants import ACCESS_TOKEN_URL, AUTHORIZE_URL, CLIENT_ID, CLIENT_SECRET, SCOPE
 from .views import FetchUser, RagtagConfigureView
 
 
@@ -55,7 +53,7 @@ class RagtagOAuth2Provider(OAuth2Provider):
         data = state['data']
         user_data = state['user']
         return {
-            'id': user_data['guid'],
+            'id': user_data['id'],
             'email': user_data['email'],
             'name': user_data['full_name'],
             'data': self.get_oauth_data(data),
