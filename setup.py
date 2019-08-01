@@ -3,7 +3,7 @@
 sentry-auth-ragtag
 ==================
 
-:copyright: (c) 2016 Functional Software, Inc
+:copyright: (c) 2018 Ragtag LLC
 """
 from setuptools import find_packages, setup
 
@@ -18,7 +18,7 @@ setup(
     author_email="opensource@ragtag.org",
     url="https://ragtag.org",
     description="Ragtag authentication provider for Sentry",
-    long_description=__doc__,
+    long_description="Ragtag authentication provider for Sentry",
     license="Apache 2.0",
     packages=find_packages(exclude=["tests"]),
     zip_safe=False,
